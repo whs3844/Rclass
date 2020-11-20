@@ -1,0 +1,290 @@
+> data<-c(1:5)
+> data
+[1] 1 2 3 4 5
+> sdata<-seq(1,10,2)
+> sdata
+[1] 1 3 5 7 9
+> rdata<-rep(1:2,2)
+> rdata
+[1] 1 2 1 2
+> > first <- c("football", "baseball", "bowling", "tennis")
+Error: unexpected '>' in ">"
+> > second <-c("baseball","tennis")
+Error: unexpected '>' in ">"
+> first <- c("football", "baseball", "bowling", "tennis")
+> second <-c("baseball","tennis")
+> union(first, second)
+[1] "football" "baseball" "bowling"  "tennis"  
+> setdiff(first, second)
+[1] "football" "bowling" 
+> intersect(first, second)
+[1] "baseball" "tennis"  
+> data; sdata; rdata; first; second
+[1] 1 2 3 4 5
+[1] 1 3 5 7 9
+[1] 1 2 1 2
+[1] "football" "baseball" "bowling"  "tennis"  
+[1] "baseball" "tennis"  
+> mdata <-matrix(c(1:6))
+> mdata
+     [,1]
+[1,]    1
+[2,]    2
+[3,]    3
+[4,]    4
+[5,]    5
+[6,]    6
+> mrow <- matrix(c(1:8), nrow=2)
+> mrow
+     [,1] [,2] [,3] [,4]
+[1,]    1    3    5    7
+[2,]    2    4    6    8
+> mbyrow
+Error: object 'mbyrow' not found
+> mbyrow <- matrix(c(1:8), nrow=2, byrow = T)
+> mbyrow
+     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8
+> mrowcol <- matrix(c(1:9), nrow=3, ncol=3)
+> mrowcol
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+> length(mrowcol)
+[1] 9
+> apply(mrowcol, 1, min)
+[1] 1 2 3
+> colnames(mrowcol) <- c("one", "two", "three")
+> mrowcol
+     one two three
+[1,]   1   4     7
+[2,]   2   5     8
+[3,]   3   6     9
+> vec <-c(1:12)
+> r <- array(vec, c(3,2,2))
+> arr
+Error: object 'arr' not found
+> arr <- array(vec, c(3,2,2))
+> arr
+, , 1
+
+     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
+
+, , 2
+
+     [,1] [,2]
+[1,]    7   10
+[2,]    8   11
+[3,]    9   12
+
+> mbyrow <- matrix(c(1:8), nrow=2)
+> mbyrow
+     [,1] [,2] [,3] [,4]
+[1,]    1    3    5    7
+[2,]    2    4    6    8
+> mrow <- matrix(c(1:8), nrow=2)
+> mrow
+     [,1] [,2] [,3] [,4]
+[1,]    1    3    5    7
+[2,]    2    4    6    8
+> mbyrow <- matrix(c(1:8), nrow=2, byrow=T)
+> mbyrow
+     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8
+> no<-c(1,2,3)
+> name<-c("star","sun","moon")
+> age<-c(13,7,3)
+> family<-data.frame(N0=no, Name=name, Age=age)
+> family
+  N0 Name Age
+1  1 star  13
+2  2  sun   7
+3  3 moon   3
+> m<-matrix(c(1,"star",13,2,"sun",7,3,"moon",3),3, by=T)
+> family<-data.frame(m)
+> family
+  X1   X2 X3
+1  1 star 13
+2  2  sun  7
+3  3 moon  3
+> getwd()
+[1] "C:/Users/현석/OneDrive/문서"
+> setwd("c:/workspace/rstudio-master/data")
+> getwd
+function () 
+.Internal(getwd())
+<bytecode: 0x0000016c82639ef8>
+<environment: namespace:base>
+> getwd()
+[1] "c:/workspace/rstudio-master/data"
+> family<-read.table("001famaily.txt",header=1, sep=" ")
+Error in read.table("001famaily.txt", header = 1, sep = " ") : 
+  more columns than column names
+> family<-read.table("001family.txt",header=1, sep=" ")
+> family
+  번호 이름 나이
+1    1 star   13
+2    2  sun    7
+3    3 moon    3
+> family<-data.frame(x=seq(1,3,1),y=c(5:7), z=c('star','sun','moon'))
+> family
+  x y    z
+1 1 5 star
+2 2 6  sun
+3 3 7 moon
+> family$x
+[1] 1 2 3
+> family$y
+[1] 5 6 7
+> family$z
+[1] "star" "sun"  "moon"
+> apply(family[,c(1,2)],2,sun)
+Error in match.fun(FUN) : object 'sun' not found
+> apply(family[,c(1,2)],2,sum)
+ x  y 
+ 6 18 
+> x1<-subject(family,y>=6)
+Error in subject(family, y >= 6) : could not find function "subject"
+> x1<-subset(family,y>=6)
+> x1
+  x y    z
+2 2 6  sun
+3 3 7 moon
+> height<-data.frame(no=c(1,2),height=c(120,130))
+> weight<-data.frame(no=c(1,2),weight=c(50,60))
+> family
+  x y    z
+1 1 5 star
+2 2 6  sun
+3 3 7 moon
+> family<-merge(height,weight,by.x-'no',by.y='no')
+Error in fix.by(by.x, x) : object 'by.x' not found
+> family<-merge(height, weight, by.x='no',by.y='no')
+> family
+  no height weight
+1  1    120     50
+2  2    130     60
+> mode(family)
+[1] "list"
+> class(family)
+[1] "data.frame"
+> list<-list("star","sun","moon")
+> moon
+Error: object 'moon' not found
+> list
+[[1]]
+[1] "star"
+
+[[2]]
+[1] "sun"
+
+[[3]]
+[1] "moon"
+
+> unlist<-unlist(list)
+> unlist
+[1] "star" "sun"  "moon"
+> family<-list(name=c("star","sun","moon"),age=c(13,7,3),
++              +address=c("jeju","seoul","busan"),gender=c("M","W","W"),
+Error: unexpected '=' in:
+"family<-list(name=c("star","sun","moon"),age=c(13,7,3),
+             +address="
+>              +htype=c("apt","apt","house"))
+Error: unexpected ')' in "             +htype=c("apt","apt","house"))"
+> family<-list(name=c("star","sun","moon"),age=c(13,7,3),+address=c("jeju","seoul","busan"),gender=c("M","W","W"),+htype=c("apt","apt","house"))
+Error: unexpected '=' in "family<-list(name=c("star","sun","moon"),age=c(13,7,3),+address="
+> family<-list(name=c("star","sun","moon"),age=c(13,7,3),address=c("jeju","seoul","busan"),gender=c("M","W","W"),htype=c("apt","apt","house"))
+> family
+$name
+[1] "star" "sun"  "moon"
+
+$age
+[1] 13  7  3
+
+$address
+[1] "jeju"  "seoul" "busan"
+
+$gender
+[1] "M" "W" "W"
+
+$htype
+[1] "apt"   "apt"   "house"
+
+> family$name
+[1] "star" "sun"  "moon"
+> family$name[1]
+[1] "star"
+> family$htype[3]
+[1] "house"
+> family$htype[2]<-"office"
+> family$htype
+[1] "apt"    "office" "house" 
+> family$gender<-NULL
+> fmaily
+Error: object 'fmaily' not found
+> list<-list("star","sun","moon")
+> family
+$name
+[1] "star" "sun"  "moon"
+
+$age
+[1] 13  7  3
+
+$address
+[1] "jeju"  "seoul" "busan"
+
+$htype
+[1] "apt"    "office" "house" 
+
+> multi_family=list(c1=list("star","sun","moon"),c2=("earth","mars","venus"),c3=list("saturn","neptun","pluto"))
+Error: unexpected ',' in "multi_family=list(c1=list("star","sun","moon"),c2=("earth","
+> multi_family=list(c1=list("star","sun","moon"),c2=("earth","mars","venus"),c3=list("saturn","neptun","pluto"))
+Error: unexpected ',' in "multi_family=list(c1=list("star","sun","moon"),c2=("earth","
+> multi_family = list(c1 = list("star", "sun", "moon"),
++                     c2 = list("earth", "mars", "venus"),
++                     c3 = list("saturn","neptun","pluto"))
+> multi_family
+$c1
+$c1[[1]]
+[1] "star"
+
+$c1[[2]]
+[1] "sun"
+
+$c1[[3]]
+[1] "moon"
+
+
+$c2
+$c2[[1]]
+[1] "earth"
+
+$c2[[2]]
+[1] "mars"
+
+$c2[[3]]
+[1] "venus"
+
+
+$c3
+$c3[[1]]
+[1] "saturn"
+
+$c3[[2]]
+[1] "neptun"
+
+$c3[[3]]
+[1] "pluto"
+
+
+> do.call(cbind,multi_family)
+     c1     c2      c3      
+[1,] "star" "earth" "saturn"
+[2,] "sun"  "mars"  "neptun"
+[3,] "moon" "venus" "pluto" 
